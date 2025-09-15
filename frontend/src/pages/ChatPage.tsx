@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { Send } from 'lucide-react';
 import { personas as personaData } from "../constants/constant";
 import axios from 'axios';
-import React from 'react';
 
 interface ChatMessage {
     id: number;
