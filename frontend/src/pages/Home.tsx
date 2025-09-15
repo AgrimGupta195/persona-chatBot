@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { personas as personaData } from '../constants/constant';
 import { useNavigate } from 'react-router-dom';
 
