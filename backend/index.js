@@ -24,7 +24,7 @@ app.post('/chat', async (req, res) => {
         const response = await Client.chat.completions.create({
             model: "gemini-2.0-flash",
             messages: [
-                { role: "system", content: `${person.content}  since currently we are staeless so dont ask in question format at last like aur kya batau? what about you ? or asking any question at end` },
+                { role: "system", content: `${person.content} ` },
                 { role: "user", content: `${content} ` }
             ]
         });
