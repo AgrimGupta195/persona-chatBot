@@ -51,7 +51,7 @@ const ChatPage = () => {
         setInputMessage('');
         setIsTyping(true);
         try {
-            const response = await axios.post('https://persona-chatbot-1-m0vf.onrender.com', {
+            const response = await axios.post('https://persona-chatbot-1-m0vf.onrender.com/chat', {
                 id: Number(id),
                 content: userMessage.content
             });
