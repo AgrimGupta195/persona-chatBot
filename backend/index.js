@@ -7,7 +7,9 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+        origin: 'https://persona-chatbot-2.onrender.com'
+    }));
 
 const Client = new OpenAI({ 
     apiKey: process.env.GEMINI_API_KEY,
