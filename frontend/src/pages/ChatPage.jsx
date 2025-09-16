@@ -1,23 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from "react-router-dom";
 import { Send } from 'lucide-react';
-import { personas as personaData } from "../constants/constant";
+import { personas as personaData } from "../constants/constants";
 import axios from 'axios';
 
-
-interface ChatMessage {
-    id: number;
-    sender: 'user' | 'persona';
-    content: string;
-    timestamp: string;
-}
-
 const ChatPage = () => {
-    const { id } = useParams<{ id: string }>();
-    const [messages, setMessages] = useState<ChatMessage[]>([]);
+    const { id } = useParams();
+    const [messages, setMessages] = useState([]);
     const [inputMessage, setInputMessage] = useState('');
     const [isTyping, setIsTyping] = useState(false);
-    const messagesEndRef = useRef<HTMLDivElement>(null);
+    const messagesEndRef = useRef(null);
 
     const persona = personaData.find(p => p.id === Number(id));
 
@@ -28,7 +20,7 @@ const ChatPage = () => {
         if (saved) {
             setMessages(JSON.parse(saved));
         } else {
-            setMessages([]); // Start with no initial message
+            setMessages([]);
             localStorage.setItem(`chat_${id}`, JSON.stringify([]));
         }
     }, [id, persona?.name]);
@@ -48,7 +40,7 @@ const ChatPage = () => {
     const sendMessage = async () => {
         if (!inputMessage.trim() || !id) return;
 
-        const userMessage: ChatMessage = {
+        const userMessage = {
             id: Date.now(),
             sender: 'user',
             content: inputMessage.trim(),
@@ -65,7 +57,7 @@ const ChatPage = () => {
             });
             const data = response.data;
 
-            const personaMessage: ChatMessage = {
+            const personaMessage = {
                 id: Date.now() + 1,
                 sender: 'persona',
                 content: data.message,
@@ -74,7 +66,7 @@ const ChatPage = () => {
 
             setMessages(prev => [...prev, personaMessage]);
         } catch (error) {
-            const errorMessage: ChatMessage = {
+            const errorMessage = {
                 id: Date.now() + 2,
                 sender: 'persona',
                 content: 'Sorry, I encountered an error. Please try again.',
@@ -86,7 +78,7 @@ const ChatPage = () => {
         }
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             sendMessage();

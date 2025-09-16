@@ -1,5 +1,5 @@
 
-import { personas as personaData } from '../constants/constant';
+import { personas as personaData } from '../constants/constants';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {

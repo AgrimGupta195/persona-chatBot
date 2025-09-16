@@ -1,11 +1,5 @@
-export interface Persona {
-    id: number;
-    name: string;
-    description: string;
-    image: string;
-}
 
-export const personas: Persona[] = [
+export const personas= [
     {
         id: 1,
         name: "Narendra Modi",
