@@ -4,6 +4,7 @@ import { Send } from 'lucide-react';
 import { personas as personaData } from "../constants/constant";
 import axios from 'axios';
 
+
 interface ChatMessage {
     id: number;
     sender: 'user' | 'persona';
